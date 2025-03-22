@@ -1,0 +1,351 @@
+{
+	"info": {
+		"_postman_id": "0441cf21-5d11-4b46-be8a-ba25841b3c9e",
+		"name": "PB605",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13413122",
+		"_collection_link": "https://warped-meteor-288591.postman.co/workspace/Misc~5c53a01a-8eb9-48e2-803d-f94186007571/collection/13413122-0441cf21-5d11-4b46-be8a-ba25841b3c9e?action=share&source=collection_link&creator=13413122"
+	},
+	"item": [
+		{
+			"name": "Items",
+			"item": [
+				{
+					"name": "GetAllItems",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostname}}/api/Item",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"api",
+								"Item"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "GetAllUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiU2FjaGluIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoic2FjaGluQGdtYWlsLmNvbSIsIklzQWRtaW4iOiJ0cnVlIiwiUm9sZXMiOiJbXSIsImF1ZCI6ImVQaXp6YUh1YlVJIiwiaXNzIjoiZVBpenphSHViQVBJIiwiZXhwIjoxNzM5NzExMjgxLCJpYXQiOjE3Mzk3MDc2ODEsIm5iZiI6MTczOTcwNzY4MX0._Z7F697FKvK-8Trth93K9KeZoqpM5Vic0CaWEXoLh1k",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{hostname}}/api/User",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"api",
+								"User"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Sachin\",\r\n  \"email\": \"sachin@gmail.com\",\r\n  \"password\": \"sachin@123\",\r\n  \"phoneNumber\": \"9999999999\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hostname}}/api/User",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"api",
+								"User"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ValidateUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"access-token\",pm.response.json().Data.accessToken);\r",
+									"pm.environment.set(\"refresh-token\",pm.response.json().Data.refreshToken);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostname}}/api/Auth?userName=sachin@gmail.com&password=sachin@123",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"api",
+								"Auth"
+							],
+							"query": [
+								{
+									"key": "userName",
+									"value": "sachin@gmail.com"
+								},
+								{
+									"key": "password",
+									"value": "sachin@123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accessToken\":\"{{access-token}}\",\r\n    \"refreshToken\":\"{{refresh-token}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hostname}}/api/Auth/token-refresh",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"api",
+								"Auth",
+								"token-refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Get Cart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostname}}/api/Cart/get-cart-details?cartId=006916E6-0E51-4AD0-ADC1-BD3D14E134D0",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"api",
+								"Cart",
+								"get-cart-details"
+							],
+							"query": [
+								{
+									"key": "cartId",
+									"value": "006916E6-0E51-4AD0-ADC1-BD3D14E134D0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Item",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": 3,\r\n  \"cartId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"itemId\": 4,\r\n  \"unitPrice\": 299.00,\r\n  \"quantity\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hostname}}/api/Cart/add-item-to-cart",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"api",
+								"Cart",
+								"add-item-to-cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Item",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{hostname}}/api/Cart/delete-item?cartId=3fa85f64-5717-4562-b3fc-2c963f66afa6&itemId=9",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"api",
+								"Cart",
+								"delete-item"
+							],
+							"query": [
+								{
+									"key": "cartId",
+									"value": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+								},
+								{
+									"key": "itemId",
+									"value": "9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCartQuantity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostname}}/api/Cart/get-item-count?cartId=4ECFD1DB-0E64-4657-B0E1-F4E106544856",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"api",
+								"Cart",
+								"get-item-count"
+							],
+							"query": [
+								{
+									"key": "cartId",
+									"value": "4ECFD1DB-0E64-4657-B0E1-F4E106544856"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCartUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiU2FjaGluIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoic2FjaGluQGdtYWlsLmNvbSIsIlVzZXJJZCI6IjMiLCJJc0FkbWluIjoiRmFsc2UiLCJSb2xlcyI6IltcIlVzZXJcIl0iLCJhdWQiOiJlUGl6emFIdWJVSSIsImlzcyI6ImVQaXp6YUh1YkFQSSIsImV4cCI6MTc0MTUzMTc2MiwiaWF0IjoxNzQxNTI4MTYyLCJuYmYiOjE3NDE1MjgxNjJ9.EO-3lTiu63XUmzgW35Sz5fbIAjw0mDDijolM5HZ3oAY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"CartId\":\"006916E6-0E51-4AD0-ADC1-BD3D14E134D0\",\r\n    \"UserId\":3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hostname}}/api/Cart/update-cart_user",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"api",
+								"Cart",
+								"update-cart_user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "MakePayment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"pay_Q4TkLcOhneI211\",\r\n  \"transactionId\": \"0b6858b1-f5ba-4d5d-9d57-1e8657f30468\",\r\n  \"tax\": 19.95,\r\n  \"currency\": \"INR\",\r\n  \"total\": 1298,\r\n  \"email\": \"sachin@gmail.com\",\r\n  \"status\": \"captured\",\r\n  \"cartId\": \"3505EC6B-C57F-49F5-A45C-934DFA8571BD\",\r\n  \"grandTotal\": 1234,\r\n  \"createdDate\": \"2025-03-08T23:54:25.771Z\",\r\n  \"userId\": 3,\r\n  \"orderRequest\": {\r\n    \"id\": \"order_Q4TaWljz58g4rp\",\r\n    \"street\": \"Faridabad\",\r\n    \"city\": \"Faridabad\",\r\n    \"locality\": \"Sector 18\",\r\n    \"zipCode\":\"123456\",\r\n    \"phoneNumber\": \"0909090909\",\r\n    \"orderItems\": [\r\n      {\r\n        \"itemId\": 1,\r\n        \"unitPrice\": 299,\r\n        \"quantity\": 3,\r\n        \"total\": 900\r\n      },\r\n      {\r\n        \"itemId\": 2,\r\n        \"unitPrice\": 399,\r\n        \"quantity\": 3,\r\n        \"total\": 900\r\n      }\r\n    ]\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hostname}}/api/Payment",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"api",
+								"Payment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

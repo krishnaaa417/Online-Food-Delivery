@@ -1,0 +1,56 @@
+﻿@using ePizza.UI.Models.ApiResponses
+@model IEnumerable<ItemResponseModel>
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_FullSizeLayout";
+}
+
+<div style="background-color:skyblue">
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col-sm-8">
+                <h1>Welcome to Pizza Ordering Site</h1>
+                <p class="pb-4">
+                    Delicious pizza delivered
+                </p>
+                <p>
+                    <a href="#heading" class="btn btn-success">ORDER ONLINE NOW</a>
+                </p>
+            </div>
+            <div class="col-sm-4 pb-3">
+                <img src="~/images/pizza-header.png" class="img-fluid" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container pt-3">
+    <h1 class="mb-3">Pizza, Beverages</h1>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-4 mb-3">
+                <div class="card">
+                    <img src="@item.ImageUrl" class="card-img-top" />
+                    <div class="card-body">
+                        <h5 class="class-title">
+                            @item.Name
+                            <span class="float-end">₹@item.UnitPrice</span>
+                        </h5>
+                        <p class="card-text">@item.Description</p>
+                    </div>
+                    <div>
+                        <span>Size : Regular</span>
+                        <span class="float-end" >
+                            <a class="btn btn-primary" onclick="AddToCart(@item.Id,@item.UnitPrice,1)">Add To Cart</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/cart.js" asp-append-version="true"></script>
+}
