@@ -27,7 +27,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ePizza.API\ePizza.API.csproj" />
+    <ProjectReference Include="..\ePizza.Core\ePizza.Core.csproj" />
     <ProjectReference Include="..\ePizza.Domain\ePizza.Domain.csproj" />
+    <ProjectReference Include="..\ePizza.Repository\ePizza.Repository.csproj" />
+    <ProjectReference Include="..\ePizza.UI\ePizza.UI.csproj" />
   </ItemGroup>
 
 </Project>
